@@ -3,11 +3,22 @@ require("dotenv").config(); // ALLOWS ENVIRONMENT VARIABLES TO BE SET ON PROCESS
 const express = require("express");
 const app = express();
 
-// Middleware
+// const bodyParser = require('body-parser');
+
+// app.use(bodyParser.json());
+
 app.use(express.json()); // parse json bodies in the request object
 
 // Redirect requests to endpoint starting with /posts to postRoutes.js
-// app.use("/posts", require("./routes/postRoutes"));
+app.use("/posts", require("./routes/postRoutes"));
+
+app.use("/labmanagers", require("./routes/labmanager"));
+// app.use('/departments', require('./routes/department'));
+// app.use('/labs', require('./routes/lab'));
+// app.use('/devices', require('./routes/device'));
+// app.use('/people', require('./routes/person'));
+// app.use('/reservations', require('./routes/reservation'));
+// Middleware
 
 // Global Error Handler. IMPORTANT function params MUST start with err
 app.use((err, req, res, next) => {
